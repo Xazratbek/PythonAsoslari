@@ -1,0 +1,1 @@
+Anvar Narzaullayevning Pythonda dasturlash asoslari kursida yozilgan kodlar va masalalar yechimi jamlangan repo
