@@ -1,8 +1,7 @@
 class Avto:
     __num_avto = 0
     """Avtomobil klassi"""
-
-    def __init__(self, make, model, rang, yil, narh):
+    def __init__(self,make,model,rang,yil,narh):
         """Avtomobilning xususiyatlari"""
         self.make = make
         self.model = model
@@ -23,25 +22,21 @@ class Avto:
         """Obyekt haqida ma'lumot"""
         return f"Avto: {self.make} {self.model}. {self.narh}$"
 
-    def __eq__(self, boshqa_avto):
+    def __eq__(self,boshqa_avto):
         return self.narh == boshqa_avto.narh
 
-    def __lt__(self, boshqa_avto):
-        return self.narh < boshqa_avto.narh
+    def __lt__(self,boshqa_avto):
+        return self.narh<boshqa_avto.narh
 
-    def __le__(self, boshqa_avto):
-        return self.narh <= boshqa_avto.narh
+    def __le__(self,boshqa_avto):
+        return self.narh<=boshqa_avto.narh
 
     def get_info(self):
-        return (
-            f"{self.rang} {self.make} {self.model}.{self.yil}-yil. Narhi:{self.narh}$"
-        )
-
+        return f"{self.rang} {self.make} {self.model}.{self.yil}-yil. Narhi:{self.narh}$"
 
 class AvtoSalon:
     """Avtosalon klassi"""
-
-    def __init__(self, name):
+    def __init__(self,name):
         self.name = name
         self.avtolar = []
 
@@ -51,33 +46,33 @@ class AvtoSalon:
     def __len__(self):
         return len(self.avtolar)
 
-    def __getitem__(self, index):
+    def __getitem__(self,index):
         return self.avtolar[index]
 
-    def __setitem__(self, index, value):
-        if isinstance(value, Avto):
-            self.avtolar[index] = value
+    def __setitem__(self,index,value):
+        if isinstance(value,Avto):
+            self.avtolar[index]=value
 
-    def __add__(self, qiymat):
-        if isinstance(qiymat, AvtoSalon):
-            yangi_salon = AvtoSalon(f"{self.name} {qiymat.name}")
+    def __add__(self,qiymat):
+        if isinstance(qiymat,AvtoSalon):
+            yangi_salon =  AvtoSalon(f"{self.name} {qiymat.name}")
             yangi_salon.avtolar = self.avtolar + qiymat.avtolar
             return yangi_salon
-        elif isinstance(qiymat, Avto):
+        elif isinstance(qiymat,Avto):
             self.add_avto(qiymat)
         else:
             print(f"AvtoSalon ga {type(qiymat)} qo`shib bo`lmaydi")
 
-    def __call__(self, *param):
+    def __call__(self,*param):
         if param:
             for avto in param:
                 self.add_avto(avto)
         else:
             return [avto for avto in self.avtolar]
 
-    def add_avto(self, *qiymat):
+    def add_avto(self,*qiymat):
         for avto in qiymat:
-            if isinstance(avto, Avto):
+            if isinstance(avto,Avto):
                 self.avtolar.append(avto)
             else:
                 print("Avto obyketini kiriting")
@@ -85,7 +80,6 @@ class AvtoSalon:
     def get_list(self):
         return [avto for avto in self.avtolar]
 
-print(dir(Avto))
 
 
 avto1 = Avto("GM","Malibu","Qora",2020,40000)
@@ -95,24 +89,62 @@ avto4 = Avto("Mazda", "6", 'Qizil',2015,35000)
 avto5 = Avto("Volkswagen","Polo",'Qora',2015,30000)
 avto6 = Avto("Honda","Accord","Oq",2017,42000)
 
-# 2 ta avtosalon yaratamiz
 salon1 = AvtoSalon("MaxAvto")
-salon2 = AvtoSalon("Avto Lider")
-
+salon1(avto1,avto2,avto3)
 print(salon1())
-# print(salon1())
-# print(avto1<avto2)
-# print(avto1)
 
-# print(avto1==avto3)
-
-
-
-# Yuqoridagi obyektlarni salon1 ga qo'shamiz
-for avto in [avto1, avto2, avto3]:
-    salon1.add_avto(avto)
-
-salon1 = AvtoSalon("MaxAvto")
-salon1.add_avto(avto1, avto2, avto3)
 salon2 = AvtoSalon("Avto Lider")
-salon2.add_avto(avto4, avto5, avto6)
+salon2(avto4,avto5,avto6)
+print(salon2())
+
+print(len(salon1))
+print(avto1<avto2)
+
+# print(dir(Avto))
+# """ >>> dir(Avto)
+# ['_Avto__num_avto',
+#  '__class__',
+#  '__delattr__',
+#  '__dict__',
+#  '__dir__',
+#  '__doc__',
+#  '__eq__',
+#  '__format__',
+#  '__ge__',
+#  '__getattribute__',
+#  '__gt__',
+#  '__hash__',
+#  '__init__',
+#  '__init_subclass__',
+#  '__le__',
+#  '__lt__',
+#  '__module__',
+#  '__ne__',
+#  '__new__',
+#  '__reduce__',
+#  '__reduce_ex__',
+#  '__repr__',
+#  '__setattr__',
+#  '__sizeof__',
+#  '__str__',
+#  '__subclasshook__',
+#  '__weakref__',
+#  'make',
+#  'model',
+#  'narh',
+#  'rang',
+#  'yil'] """
+
+#Amaliyot
+
+class Shaxs:
+    def __init__(self,ism,familiya,t_yil,t_raqam,passport_seriya,manzil):
+        self.ism = ism
+        self.familiya = familiya
+        self.t_yil = t_yil
+        self.t_raqam = t_raqam
+        self.passport_seriya = passport_seriya
+        self.manzil = manzil
+
+    def __repr__(self):
+        return f"{self.ism.title()}\n{self.familiya.title()}\n{self.t_yil}\n{self.t_raqam}\n{self.passport_seriya}\n{self.manzil}"

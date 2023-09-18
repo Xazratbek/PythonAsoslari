@@ -1,0 +1,1 @@
+Anvar Narzullayevning pythonda dasturlash asoslari darsidan o'rganilgan bilimlar asosida qilingan terminalda ishlaydigan Clickning clone versiyasi
